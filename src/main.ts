@@ -1,24 +1,57 @@
 import { v4 as uuid } from "uuid";
 
-import { io, type Socket } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
-import type { Method, Response } from "./types/response";
+export type Method =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "PATCH"
+  | "DELETE"
+  | "SUBSCRIPTION";
 
-let client: Socket;
+export type PaginatedResponse<T> = {
+  count: number;
+  results: T[];
+  next: string | null;
+  previous: string | null;
+};
 
-export const createClient = (...options: Parameters<typeof io>) =>
-  (client = io(...options));
+export type Response<T> = {
+  data: T;
+  event: string;
+  status: number;
+  method: Method;
+  action: string;
+  requestId: string | number;
+};
 
-type Callable<T extends any = any> = (response: T) => void;
+export type SubscriptionResponse<T> = {
+  type: "added" | "modified" | "removed";
+} & Response<T>;
 
-type RequestOptions = {
+export type Callable<T extends any = any> = (response: T) => void;
+
+export type RequestOptions = {
   data?: object;
   query?: object;
   method: Method;
   action: string;
 };
 
-type Listener<T> = Record<Method, Record<string, T>>;
+export type RequestOption = Omit<RequestOptions, "method">;
+
+export type Listener<T> = Record<Method, Record<string, T>>;
+
+export type ListenOptions<T> = {
+  selector: (data: any) => any;
+  selectors: (response: Response<T>, selector: (data: any) => any) => any[];
+} & RequestOption;
+
+let client: Socket;
+
+export const createClient = (...options: Parameters<typeof io>): Socket =>
+  (client = io(...options));
 
 const listeners: Listener<Record<string, Callable[]> | Callable[]> = {
   GET: {},
@@ -124,12 +157,6 @@ export const request = <T>(event: string, options: RequestOptions) =>
     ]);
   });
 
-type RequestOption = {
-  data?: object;
-  query?: object;
-  action: string;
-};
-
 export const subscribe = <T>(
   event: string,
   options: RequestOption,
@@ -137,11 +164,6 @@ export const subscribe = <T>(
 ) => {
   emit(event, { ...options, method: "SUBSCRIPTION" }, listener);
 };
-
-type ListenOptions<T> = {
-  selector: (data: any) => any;
-  selectors: (response: Response<T>, selector: (data: any) => any) => any[];
-} & RequestOptions;
 
 export const listen = <T>(
   requestP: ReturnType<typeof request<T>>,

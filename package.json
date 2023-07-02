@@ -1,41 +1,32 @@
 {
-  "name": "djira-client",
-  "version": "0.0.0",
+  "name": "djira",
+  "version": "0.0.4",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/main.es.js",
-      "require": "./dist/main.cjs.js"
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs"
     }
   },
-  "main": "./dist/main.cjs.js",
-  "module": "./dist/main.es.js",
-  "typings": "./dist/main.d.ts",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "tsc",
+    "prod": "tsc && npm publish"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.2",
     "@types/uuid": "^9.0.2",
-    "path": "^0.12.7",
-    "picocolors": "^1.0.0",
-    "rollup-plugin-typescript-paths": "^1.4.0",
-    "rollup-plugin-visualizer": "^5.9.2",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.9",
-    "vite-plugin-progress": "^0.0.7"
+    "typescript": "^5.0.2"
   },
   "dependencies": {
     "socket.io-client": "^4.6.2",
     "tslib": "^2.6.0",
     "uuid": "^9.0.0"
   },
-  "description": "The creator of this fantastic library need a job\r [tel](tel:+2349076931902),\r [email](usegong@gmail.com)",
+  "description": "Javascript client for djira server",
   "directories": {
     "test": "tests"
   },
