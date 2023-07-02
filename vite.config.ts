@@ -26,15 +26,15 @@ export default defineConfig({
     ],
   },
   server: {
-    port: 3123,
+    port: 3000,
+    open: true,
   },
   build: {
-    
     manifest: true,
     minify: true,
     reportCompressedSize: true,
     lib: {
-        name: "main",
+      name: "main",
       entry: path.resolve(__dirname, "src/main.ts"),
       fileName: "main",
       formats: ["es", "cjs"],

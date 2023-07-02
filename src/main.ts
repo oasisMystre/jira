@@ -160,30 +160,35 @@ export const listen = <T>(
 };
 
 export class Jira {
-  readonly post = <T>(event: string, options: RequestOption) =>
-    request<T>(event, { ...options, method: "POST" });
+  post<T>(event: string, options: RequestOption) {
+    return request<T>(event, { ...options, method: "POST" });
+  }
 
-  readonly get = <T>(event: string, options: RequestOption) =>
-    request<T>(event, {
+  get<T>(event: string, options: RequestOption) {
+    return request<T>(event, {
       ...options,
       method: "GET",
     });
+  }
 
-  readonly put = <T>(event: string, options: RequestOption) =>
-    request<T>(event, {
+  put<T>(event: string, options: RequestOption) {
+    return request<T>(event, {
       ...options,
       method: "PUT",
     });
+  }
 
-  readonly patch = <T>(event: string, options: RequestOption) =>
-    request<T>(event, {
+  patch<T>(event: string, options: RequestOption) {
+    return request<T>(event, {
       ...options,
       method: "PATCH",
     });
+  }
 
-  readonly delete = <T>(event: string, options: RequestOption) =>
-    request<T>(event, {
+  delete<T>(event: string, options: RequestOption) {
+    return request<T>(event, {
       ...options,
       method: "DELETE",
     });
+  }
 }

@@ -1,6 +1,5 @@
 {
-  "name": "jira",
-  "private": true,
+  "name": "djira-client",
   "version": "0.0.0",
   "type": "module",
   "exports": {
@@ -35,5 +34,17 @@
     "socket.io-client": "^4.6.2",
     "tslib": "^2.6.0",
     "uuid": "^9.0.0"
-  }
+  },
+  "description": "The creator of this fantastic library need a job\r [tel](tel:+2349076931902),\r [email](usegong@gmail.com)",
+  "directories": {
+    "test": "tests"
+  },
+  "author": "Oguntunde Caleb Fiyinfoluwa <oasis.mystre@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "djira",
+    "socketio",
+    "realtime",
+    "django"
+  ]
 }
