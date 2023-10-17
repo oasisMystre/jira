@@ -1,11 +1,10 @@
 {
-  "name": "djira",
-  "version": "0.0.4",
+  "name": "djira-client",
+  "version": "0.0.2",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/main.js",
-      "require": "./dist/main.cjs"
+      "import": "./dist/main.js"
     }
   },
   "main": "./dist/main.js",

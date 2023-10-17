@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
-    "lib": ["es2017", "es7", "es6", "dom"],
-    "declaration": true,
     "outDir": "dist",
+    "declaration": true,
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node16"
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "exclude": [
-    "node_modules",
-    "dist"
+  "include": [
+    "src"
   ]
 }
